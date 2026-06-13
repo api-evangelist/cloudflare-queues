@@ -1,0 +1,173 @@
+vocabulary:
+  - term: queue
+    definition: >-
+      A named, durable message buffer within Cloudflare's distributed
+      infrastructure that stores messages until they are consumed. Queues
+      support up to 5,000 messages per second throughput and up to 14 days
+      of message retention.
+    related:
+      - queue_id
+      - queue_name
+      - dead_letter_queue
+
+  - term: queue_id
+    definition: >-
+      A unique 32-character hexadecimal identifier assigned to each queue by
+      Cloudflare upon creation. Used in API paths to reference a specific queue.
+    example: "023e105f4ecef8ad9ca31a8372d0c353"
+
+  - term: queue_name
+    definition: >-
+      The human-readable name assigned to a queue at creation time. Queue names
+      must be unique within an account and follow Cloudflare's naming
+      constraints.
+    example: "example-queue"
+
+  - term: consumer
+    definition: >-
+      A service or process that receives and processes messages from a queue.
+      Cloudflare Queues supports two consumer types: Worker push consumers
+      (automatic delivery) and HTTP pull consumers (polling via REST API).
+    related:
+      - worker_consumer
+      - http_pull_consumer
+      - consumer_id
+
+  - term: consumer_id
+    definition: >-
+      A unique identifier assigned to a consumer when it is registered with a
+      queue. Used to reference, update, or delete a specific consumer.
+
+  - term: worker_consumer
+    definition: >-
+      A Cloudflare Worker script configured as a push-based consumer that
+      automatically receives batches of messages from a queue when messages
+      are available. The Workers runtime invokes the script with each batch.
+    related:
+      - script_name
+      - batch_size
+      - max_concurrency
+
+  - term: http_pull_consumer
+    definition: >-
+      An HTTP-based consumer that polls the Cloudflare Queues API to pull
+      batches of messages. Messages are leased (temporarily locked) to the
+      consumer during processing, and must be acknowledged or will be
+      re-delivered after the visibility timeout.
+    related:
+      - visibility_timeout_ms
+      - lease_id
+      - batch_size
+
+  - term: producer
+    definition: >-
+      A service or resource that sends messages to a queue. Producers can be
+      Cloudflare Workers or R2 buckets (for event-driven workflows).
+    related:
+      - worker_producer
+      - r2_producer
+
+  - term: dead_letter_queue
+    definition: >-
+      A secondary queue that receives messages that have exhausted their
+      maximum retry attempts without successful acknowledgement. Used for
+      error handling, debugging, and recovering failed messages.
+    abbreviation: DLQ
+
+  - term: lease_id
+    definition: >-
+      A temporary token representing an in-flight message that has been pulled
+      from a queue. Consumers must use the lease_id to acknowledge or retry
+      a message within the visibility timeout window.
+    related:
+      - visibility_timeout_ms
+      - http_pull_consumer
+
+  - term: visibility_timeout_ms
+    definition: >-
+      The duration in milliseconds that a pulled message is exclusively leased
+      to a consumer. After this period elapses, the message becomes available
+      again for another consumer or attempt if not acknowledged.
+    unit: milliseconds
+    example: 6000
+
+  - term: batch_size
+    definition: >-
+      The maximum number of messages to include in a single delivery batch to
+      a consumer. Larger batch sizes improve throughput but require more
+      processing capacity.
+    example: 50
+
+  - term: delivery_delay
+    definition: >-
+      The number of seconds to wait before making a message available for
+      consumption after it is enqueued. Can be set at the queue level
+      (applies to all messages) or per individual message.
+    unit: seconds
+    example: 5
+
+  - term: message_retention_period
+    definition: >-
+      The maximum number of seconds an unconsumed message is retained in the
+      queue before being discarded. Cloudflare Queues supports up to 14 days
+      (1,209,600 seconds) of retention.
+    unit: seconds
+    example: 345600
+    maximum: 1209600
+
+  - term: backlog_count
+    definition: >-
+      The number of messages currently unacknowledged (in backlog) in a queue.
+      This is a best-effort metric and may be approximate.
+
+  - term: backlog_bytes
+    definition: >-
+      The total size in bytes of unacknowledged messages in a queue.
+      This is a best-effort metric and may be approximate.
+    unit: bytes
+
+  - term: max_concurrency
+    definition: >-
+      The maximum number of concurrent Worker invocations that may
+      consume from a queue simultaneously. Setting to null opts in to the
+      Cloudflare platform maximum (recommended for most workloads).
+    related:
+      - worker_consumer
+
+  - term: max_retries
+    definition: >-
+      The maximum number of times Cloudflare will attempt to deliver a message
+      to a consumer before routing it to the dead letter queue (if configured)
+      or discarding it.
+    example: 3
+
+  - term: retry_delay
+    definition: >-
+      The number of seconds to wait before making a failed message available
+      for another delivery attempt.
+    unit: seconds
+    example: 10
+
+  - term: purge
+    definition: >-
+      An operation that permanently deletes all messages from a queue.
+      The purge operation is irreversible and intended for clearing queues
+      during maintenance or recovery scenarios.
+
+  - term: message_preview
+    definition: >-
+      An operation that reads messages from a queue without leasing them,
+      allowing inspection without affecting the queue state or metrics.
+      Previewed messages remain available for subsequent pull operations.
+
+  - term: script_name
+    definition: >-
+      The name of a Cloudflare Worker script registered as a push consumer
+      for a queue. The script must be deployed in the same account.
+    example: "my-consumer-worker"
+
+  - term: account_id
+    definition: >-
+      The unique identifier of the Cloudflare account that owns the queue.
+      Required as a path parameter in all Cloudflare Queues API endpoints.
+    example: "023e105f4ecef8ad9ca31a8372d0c353"

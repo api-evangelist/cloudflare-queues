@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/main/json-schema/cloudflare-queues-consumer.json",
+  "title": "Cloudflare Queue Consumer",
+  "description": "A consumer configuration for a Cloudflare Queue, either a Worker push consumer or an HTTP pull consumer.",
+  "oneOf": [
+    {
+      "title": "Worker Consumer",
+      "description": "A Cloudflare Worker-based push consumer that receives messages automatically.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["worker"],
+          "description": "Consumer type: worker-based push delivery."
+        },
+        "script_name": {
+          "description": "Name of the Cloudflare Worker script that will consume messages.",
+          "type": "string",
+          "example": "my-consumer-worker"
+        },
+        "dead_letter_queue": {
+          "description": "Name of the dead letter queue to send failed messages to.",
+          "type": "string",
+          "example": "my-dlq"
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "batch_size": {
+              "description": "Maximum number of messages per batch.",
+              "type": "number",
+              "example": 50
+            },
+            "max_concurrency": {
+              "description": "Maximum number of concurrent consumer invocations.",
+              "type": "number",
+              "example": 10
+            },
+            "max_retries": {
+              "description": "Maximum number of retries for failed messages.",
+              "type": "number",
+              "example": 3
+            },
+            "max_wait_time_ms": {
+              "description": "Milliseconds to wait for a batch to fill before delivery.",
+              "type": "number",
+              "example": 5000
+            },
+            "retry_delay": {
+              "description": "Seconds to delay before retrying a failed message.",
+              "type": "number",
+              "example": 10
+            }
+          }
+        }
+      },
+      "required": ["type", "script_name"]
+    },
+    {
+      "title": "HTTP Pull Consumer",
+      "description": "An HTTP-based pull consumer that polls for messages via the REST API.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["http_pull"],
+          "description": "Consumer type: HTTP pull-based delivery."
+        },
+        "dead_letter_queue": {
+          "description": "Name of the dead letter queue to send failed messages to.",
+          "type": "string",
+          "example": "my-dlq"
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "batch_size": {
+              "description": "Maximum number of messages per pull batch.",
+              "type": "number",
+              "example": 50
+            },
+            "max_retries": {
+              "description": "Maximum number of retries for failed messages.",
+              "type": "number",
+              "example": 3
+            },
+            "retry_delay": {
+              "description": "Seconds to delay before retrying a failed message.",
+              "type": "number",
+              "example": 10
+            },
+            "visibility_timeout_ms": {
+              "description": "Milliseconds a pulled message is exclusively leased before becoming available again.",
+              "type": "number",
+              "example": 6000
+            }
+          }
+        }
+      },
+      "required": ["type"]
+    }
+  ]
+}

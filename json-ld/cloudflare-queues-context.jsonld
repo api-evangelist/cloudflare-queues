@@ -1,0 +1,209 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cf": "https://developers.cloudflare.com/queues/vocabulary#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Queue": "cf:Queue",
+    "Consumer": "cf:Consumer",
+    "Message": "cf:Message",
+    "Producer": "cf:Producer",
+
+    "queue_id": {
+      "@id": "cf:queueId",
+      "@type": "xsd:string"
+    },
+    "queue_name": {
+      "@id": "cf:queueName",
+      "@type": "xsd:string"
+    },
+    "consumer_id": {
+      "@id": "cf:consumerId",
+      "@type": "xsd:string"
+    },
+    "script_name": {
+      "@id": "cf:scriptName",
+      "@type": "xsd:string"
+    },
+    "dead_letter_queue": {
+      "@id": "cf:deadLetterQueue",
+      "@type": "xsd:string"
+    },
+    "lease_id": {
+      "@id": "cf:leaseId",
+      "@type": "xsd:string"
+    },
+    "created_on": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modified_on": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "producers": {
+      "@id": "cf:producers",
+      "@container": "@set"
+    },
+    "consumers": {
+      "@id": "cf:consumers",
+      "@container": "@set"
+    },
+    "producers_total_count": {
+      "@id": "cf:producersTotalCount",
+      "@type": "xsd:integer"
+    },
+    "consumers_total_count": {
+      "@id": "cf:consumersTotalCount",
+      "@type": "xsd:integer"
+    },
+    "settings": {
+      "@id": "cf:settings",
+      "@type": "@id"
+    },
+    "delivery_delay": {
+      "@id": "cf:deliveryDelay",
+      "@type": "xsd:integer"
+    },
+    "delivery_paused": {
+      "@id": "cf:deliveryPaused",
+      "@type": "xsd:boolean"
+    },
+    "message_retention_period": {
+      "@id": "cf:messageRetentionPeriod",
+      "@type": "xsd:integer"
+    },
+    "batch_size": {
+      "@id": "cf:batchSize",
+      "@type": "xsd:integer"
+    },
+    "max_concurrency": {
+      "@id": "cf:maxConcurrency",
+      "@type": "xsd:integer"
+    },
+    "max_retries": {
+      "@id": "cf:maxRetries",
+      "@type": "xsd:integer"
+    },
+    "max_wait_time_ms": {
+      "@id": "cf:maxWaitTimeMs",
+      "@type": "xsd:integer"
+    },
+    "retry_delay": {
+      "@id": "cf:retryDelay",
+      "@type": "xsd:integer"
+    },
+    "visibility_timeout_ms": {
+      "@id": "cf:visibilityTimeoutMs",
+      "@type": "xsd:integer"
+    },
+    "backlog_count": {
+      "@id": "cf:backlogCount",
+      "@type": "xsd:integer"
+    },
+    "backlog_bytes": {
+      "@id": "cf:backlogBytes",
+      "@type": "xsd:integer"
+    },
+    "oldest_message_timestamp_ms": {
+      "@id": "cf:oldestMessageTimestampMs",
+      "@type": "xsd:long"
+    },
+    "delay_seconds": {
+      "@id": "cf:delaySeconds",
+      "@type": "xsd:integer"
+    },
+    "content_type": {
+      "@id": "cf:contentType",
+      "@type": "xsd:string"
+    },
+    "body": {
+      "@id": "schema:text"
+    },
+    "attempts": {
+      "@id": "cf:attempts",
+      "@type": "xsd:integer"
+    },
+    "timestamp_ms": {
+      "@id": "cf:timestampMs",
+      "@type": "xsd:long"
+    },
+    "metadata": {
+      "@id": "cf:metadata",
+      "@type": "@id"
+    },
+    "ackCount": {
+      "@id": "cf:ackCount",
+      "@type": "xsd:integer"
+    },
+    "retryCount": {
+      "@id": "cf:retryCount",
+      "@type": "xsd:integer"
+    },
+    "message_backlog_count": {
+      "@id": "cf:messageBacklogCount",
+      "@type": "xsd:integer"
+    },
+    "success": {
+      "@id": "cf:success",
+      "@type": "xsd:boolean"
+    },
+    "errors": {
+      "@id": "cf:errors",
+      "@container": "@set"
+    },
+    "messages": {
+      "@id": "cf:messages",
+      "@container": "@set"
+    },
+    "result": {
+      "@id": "cf:result"
+    },
+    "result_info": {
+      "@id": "cf:resultInfo"
+    },
+    "count": {
+      "@id": "cf:count",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "cf:page",
+      "@type": "xsd:integer"
+    },
+    "per_page": {
+      "@id": "cf:perPage",
+      "@type": "xsd:integer"
+    },
+    "total_count": {
+      "@id": "cf:totalCount",
+      "@type": "xsd:integer"
+    },
+    "total_pages": {
+      "@id": "cf:totalPages",
+      "@type": "xsd:integer"
+    },
+    "delete_messages_permanently": {
+      "@id": "cf:deleteMessagesPermanently",
+      "@type": "xsd:boolean"
+    },
+    "started_at": {
+      "@id": "cf:startedAt",
+      "@type": "xsd:dateTime"
+    },
+    "completed": {
+      "@id": "cf:completed",
+      "@type": "xsd:string"
+    },
+    "acks": {
+      "@id": "cf:acks",
+      "@container": "@set"
+    },
+    "retries": {
+      "@id": "cf:retries",
+      "@container": "@set"
+    },
+    "warnings": {
+      "@id": "cf:warnings"
+    }
+  }
+}

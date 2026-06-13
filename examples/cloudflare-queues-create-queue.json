@@ -1,0 +1,39 @@
+{
+  "title": "Create Queue Example",
+  "description": "Example request and response for creating a Cloudflare Queue.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/queues",
+    "headers": {
+      "Authorization": "Bearer <api_token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "queue_name": "my-message-queue"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "result": {
+        "queue_id": "023e105f4ecef8ad9ca31a8372d0c353",
+        "queue_name": "my-message-queue",
+        "created_on": "2024-01-15T10:00:00Z",
+        "modified_on": "2024-01-15T10:00:00Z",
+        "producers_total_count": 0,
+        "consumers_total_count": 0,
+        "settings": {
+          "delivery_delay": 0,
+          "delivery_paused": false,
+          "message_retention_period": 345600
+        }
+      }
+    }
+  }
+}

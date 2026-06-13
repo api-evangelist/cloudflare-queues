@@ -1,0 +1,50 @@
+{
+  "title": "Pull Queue Messages Example",
+  "description": "Example request and response for pulling a batch of messages from a Cloudflare Queue using HTTP pull consumer.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/queues/{queue_id}/messages/pull",
+    "headers": {
+      "Authorization": "Bearer <api_token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "batch_size": 10,
+      "visibility_timeout_ms": 30000
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "result": {
+        "message_backlog_count": 5,
+        "messages": [
+          {
+            "id": "b01b5594f784d0165c2985833f5660dd",
+            "body": "Hello, Cloudflare Queues!",
+            "attempts": 1,
+            "lease_id": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0..example_lease_id",
+            "timestamp_ms": 1710950954154,
+            "metadata": {
+              "CF-Content-Type": "text",
+              "CF-sourceMessageSource": "api"
+            }
+          }
+        ],
+        "metadata": {
+          "metrics": {
+            "backlog_count": 5,
+            "backlog_bytes": 512,
+            "oldest_message_timestamp_ms": 1710950954154
+          }
+        }
+      }
+    }
+  }
+}

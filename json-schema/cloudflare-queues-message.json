@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/main/json-schema/cloudflare-queues-message.json",
+  "title": "Cloudflare Queue Message",
+  "description": "A message sent to or pulled from a Cloudflare Queue.",
+  "allOf": [
+    {
+      "properties": {
+        "delay_seconds": {
+          "description": "The number of seconds to wait before attempting to deliver this message to consumers.",
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "title": "Text Message",
+          "properties": {
+            "body": {
+              "description": "The text body of the message.",
+              "type": "string"
+            },
+            "content_type": {
+              "type": "string",
+              "enum": ["text"]
+            }
+          }
+        },
+        {
+          "title": "JSON Message",
+          "properties": {
+            "body": {
+              "description": "The JSON body of the message.",
+              "type": "object"
+            },
+            "content_type": {
+              "type": "string",
+              "enum": ["json"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "pulled_message": {
+      "title": "Pulled Queue Message",
+      "description": "A message pulled from a queue, including its lease ID for acknowledgement.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the message.",
+          "type": "string",
+          "example": "b01b5594f784d0165c2985833f5660dd",
+          "readOnly": true
+        },
+        "body": {
+          "description": "The body of the message.",
+          "type": "string",
+          "example": "hello world",
+          "readOnly": true
+        },
+        "attempts": {
+          "description": "The number of delivery attempts for this message.",
+          "type": "number",
+          "example": 1,
+          "readOnly": true
+        },
+        "lease_id": {
+          "description": "An ID representing the in-flight lease for this message. Required for acknowledgement.",
+          "type": "string"
+        },
+        "timestamp_ms": {
+          "description": "Unix timestamp in milliseconds when the message was enqueued.",
+          "type": "number",
+          "example": 1710950954154,
+          "readOnly": true
+        },
+        "metadata": {
+          "description": "Additional metadata about the message.",
+          "type": "object",
+          "example": {
+            "CF-Content-Type": "text",
+            "CF-sourceMessageSource": "dash"
+          },
+          "readOnly": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Create Queue Consumer Examples",
+  "description": "Example requests and responses for creating consumers for a Cloudflare Queue.",
+  "examples": [
+    {
+      "title": "Worker Push Consumer",
+      "description": "Create a Cloudflare Worker push consumer that automatically receives messages.",
+      "request": {
+        "method": "POST",
+        "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/queues/{queue_id}/consumers",
+        "headers": {
+          "Authorization": "Bearer <api_token>",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "type": "worker",
+          "script_name": "my-consumer-worker",
+          "dead_letter_queue": "my-dead-letter-queue",
+          "settings": {
+            "batch_size": 25,
+            "max_concurrency": 5,
+            "max_retries": 3,
+            "max_wait_time_ms": 5000,
+            "retry_delay": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "consumer_id": "023e105f4ecef8ad9ca31a8372d0c353",
+            "type": "worker",
+            "script_name": "my-consumer-worker",
+            "queue_name": "my-message-queue",
+            "dead_letter_queue": "my-dead-letter-queue",
+            "created_on": "2024-01-15T10:00:00Z",
+            "settings": {
+              "batch_size": 25,
+              "max_concurrency": 5,
+              "max_retries": 3,
+              "max_wait_time_ms": 5000,
+              "retry_delay": 10
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "HTTP Pull Consumer",
+      "description": "Create an HTTP pull consumer that allows polling for messages via REST API.",
+      "request": {
+        "method": "POST",
+        "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/queues/{queue_id}/consumers",
+        "headers": {
+          "Authorization": "Bearer <api_token>",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "type": "http_pull",
+          "dead_letter_queue": "my-dead-letter-queue",
+          "settings": {
+            "batch_size": 50,
+            "max_retries": 3,
+            "retry_delay": 10,
+            "visibility_timeout_ms": 30000
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "consumer_id": "abc123def456abc123def456abc12345",
+            "type": "http_pull",
+            "queue_name": "my-message-queue",
+            "dead_letter_queue": "my-dead-letter-queue",
+            "created_on": "2024-01-15T10:00:00Z",
+            "settings": {
+              "batch_size": 50,
+              "max_retries": 3,
+              "retry_delay": 10,
+              "visibility_timeout_ms": 30000
+            }
+          }
+        }
+      }
+    }
+  ]
+}

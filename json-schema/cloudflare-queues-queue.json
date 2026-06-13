@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/main/json-schema/cloudflare-queues-queue.json",
+  "title": "Cloudflare Queue",
+  "description": "A Cloudflare Queue resource representing a message queue managed through Cloudflare Workers.",
+  "type": "object",
+  "properties": {
+    "queue_id": {
+      "description": "Unique identifier for the queue.",
+      "type": "string",
+      "maxLength": 32,
+      "readOnly": true
+    },
+    "queue_name": {
+      "description": "Name of the queue.",
+      "type": "string",
+      "example": "example-queue"
+    },
+    "created_on": {
+      "description": "Timestamp when the queue was created.",
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "modified_on": {
+      "description": "Timestamp when the queue was last modified.",
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "producers_total_count": {
+      "description": "Total number of producers attached to this queue.",
+      "type": "number",
+      "readOnly": true
+    },
+    "consumers_total_count": {
+      "description": "Total number of consumers attached to this queue.",
+      "type": "number",
+      "readOnly": true
+    },
+    "settings": {
+      "description": "Queue configuration settings.",
+      "type": "object",
+      "properties": {
+        "delivery_delay": {
+          "description": "Number of seconds to delay delivery of all messages to consumers.",
+          "type": "number",
+          "example": 5
+        },
+        "delivery_paused": {
+          "description": "Indicates if message delivery to consumers is currently paused.",
+          "type": "boolean",
+          "example": false
+        },
+        "message_retention_period": {
+          "description": "Number of seconds after which an unconsumed message will be retained.",
+          "type": "number",
+          "example": 345600
+        }
+      }
+    },
+    "producers": {
+      "description": "List of producers attached to this queue.",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "oneOf": [
+          {
+            "title": "Worker Producer",
+            "properties": {
+              "type": { "type": "string", "enum": ["worker"] },
+              "script": { "type": "string" }
+            },
+            "required": ["type"]
+          },
+          {
+            "title": "R2 Producer",
+            "properties": {
+              "type": { "type": "string", "enum": ["r2_bucket"] },
+              "bucket_name": { "type": "string" }
+            },
+            "required": ["type"]
+          }
+        ]
+      }
+    },
+    "consumers": {
+      "description": "List of consumers attached to this queue.",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}
