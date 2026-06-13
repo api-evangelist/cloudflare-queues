@@ -1,0 +1,128 @@
+specificationVersion: '0.1'
+id: cloudflare-queues-rate-limits
+name: Cloudflare Queues Rate Limits
+description: Rate limits, throughput constraints, and quota boundaries for Cloudflare
+  Queues. Exceeding throughput limits returns a 429 Too Many Requests error. Exceeding
+  storage limits returns a Storage Limit Exceeded error. Limit increases can be requested
+  via Cloudflare's official limit increase form.
+url: https://developers.cloudflare.com/queues/platform/limits/
+limits:
+  - name: Queues per Account
+    description: Maximum number of queues that can be created per Cloudflare account
+    value: 10000
+    unit: queues
+    scope: account
+  - name: Per-Queue Throughput
+    description: Maximum message throughput per individual queue; exceeding this returns
+      a 429 Too Many Requests error
+    value: 5000
+    unit: messages/second
+    scope: queue
+  - name: Maximum Message Size
+    description: Maximum size of a single message including approximately 100 bytes
+      of internal metadata overhead
+    value: 128
+    unit: KB
+    scope: message
+  - name: Message Retries
+    description: Maximum number of retry attempts for a single message before it is
+      dead-lettered or discarded
+    value: 100
+    unit: retries
+    scope: message
+  - name: Message Retention (Free)
+    description: Fixed message retention period on the Workers Free plan; cannot be
+      configured
+    value: 24
+    unit: hours
+    scope: queue
+    plan: Workers Free
+  - name: Message Retention (Paid - Maximum)
+    description: Maximum configurable message retention period on the Workers Paid
+      plan
+    value: 14
+    unit: days
+    scope: queue
+    plan: Workers Paid
+  - name: Message Retention (Paid - Minimum)
+    description: Minimum configurable message retention period on the Workers Paid
+      plan
+    value: 60
+    unit: seconds
+    scope: queue
+    plan: Workers Paid
+  - name: Batch Send Limit (Messages)
+    description: Maximum number of messages that can be sent in a single sendBatch()
+      call
+    value: 100
+    unit: messages
+    scope: request
+  - name: Batch Send Limit (Size)
+    description: Maximum total payload size for a single sendBatch() call
+    value: 256
+    unit: KB
+    scope: request
+  - name: Consumer Batch Size
+    description: Maximum number of messages a consumer can receive in a single batch
+      invocation
+    value: 100
+    unit: messages
+    scope: consumer
+  - name: Batch Wait Time
+    description: Maximum time a queue will wait to fill a batch before delivering
+      it to a consumer
+    value: 60
+    unit: seconds
+    scope: queue
+  - name: Per-Queue Backlog Storage
+    description: Maximum total message storage per queue; exceeding this returns a
+      Storage Limit Exceeded error
+    value: 25
+    unit: GB
+    scope: queue
+  - name: Concurrent Consumer Invocations
+    description: Maximum number of concurrent consumer Worker invocations per queue
+      for push-based consumers
+    value: 250
+    unit: concurrent invocations
+    scope: queue
+  - name: Consumer Wall-Clock Time
+    description: Maximum wall-clock execution time per consumer invocation
+    value: 15
+    unit: minutes
+    scope: invocation
+  - name: Consumer CPU Time (Default)
+    description: Default maximum CPU time per consumer invocation
+    value: 30
+    unit: seconds
+    scope: invocation
+  - name: Consumer CPU Time (Configurable Maximum)
+    description: Maximum configurable CPU time per consumer invocation
+    value: 5
+    unit: minutes
+    scope: invocation
+  - name: Visibility Timeout (Pull Consumer)
+    description: Maximum visibility timeout for HTTP pull consumers; messages become
+      visible again after this period if not acknowledged
+    value: 12
+    unit: hours
+    scope: consumer
+  - name: Delivery Delay (Maximum)
+    description: Maximum delay that can be applied to defer message delivery
+    value: 24
+    unit: hours
+    scope: message
+  - name: Free Tier Daily Operations
+    description: Maximum free operations per day on the Workers Free plan before usage
+      is blocked
+    value: 10000
+    unit: operations/day
+    scope: account
+    plan: Workers Free
+  - name: Paid Tier Monthly Included Operations
+    description: Operations included per month before per-operation overage billing
+      on the Workers Paid plan
+    value: 1000000
+    unit: operations/month
+    scope: account
+    plan: Workers Paid

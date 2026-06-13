@@ -1,0 +1,80 @@
+aid: cloudflare-queues
+name: Cloudflare Queues
+description: Cloudflare Queues is a flexible, scalable message queue service built
+  into the Cloudflare Workers ecosystem. It provides guaranteed message delivery with
+  a REST API for creating and managing queues, sending individual or batched messages,
+  configuring push-based Worker consumers and HTTP pull consumers, managing dead letter
+  queues, and monitoring queue metrics. Queues supports delivery delays, message retention
+  up to 14 days, throughput up to 5,000 messages per second per queue, and event
+  subscriptions for reactive workflows.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Messaging
+  - Message Queue
+  - Serverless
+  - Workers
+  - Cloudflare
+  - Async
+  - Dead Letter Queue
+  - Event Driven
+apis:
+  - aid: cloudflare-queues:cloudflare-queues-api
+    name: Cloudflare Queues API
+    description: REST API for creating and managing Cloudflare Queues, sending and
+      receiving messages, configuring consumers (Worker push or HTTP pull), managing
+      dead letter queues, purging queues, and retrieving queue metrics and event subscriptions.
+      Authenticated with Cloudflare API tokens via Bearer authorization.
+    humanURL: https://developers.cloudflare.com/api/resources/queues/
+    baseURL: https://api.cloudflare.com/client/v4
+    tags:
+      - Queues
+      - Messaging
+      - Consumers
+      - Dead Letter Queue
+      - Workers
+    properties:
+      - type: Documentation
+        url: https://developers.cloudflare.com/queues/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/cloudflare/api-schemas/main/openapi.yaml
+common:
+  - type: Website
+    url: https://www.cloudflare.com/developer-platform/queues/
+  - type: Documentation
+    url: https://developers.cloudflare.com/queues/
+  - type: GettingStarted
+    url: https://developers.cloudflare.com/queues/get-started/
+  - type: APIReference
+    url: https://developers.cloudflare.com/api/resources/queues/
+  - type: GitHubOrg
+    url: https://github.com/cloudflare
+  - type: GitHubRepo
+    url: https://github.com/cloudflare/workers-sdk
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/cloudflare/api-schemas/main/openapi.yaml
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/cloudflare
+  - type: Blog
+    url: https://blog.cloudflare.com/tag/cloudflare-queues/
+  - type: Pricing
+    url: https://developers.cloudflare.com/queues/platform/pricing/
+  - type: StatusPage
+    url: https://www.cloudflarestatus.com/
+  - type: X
+    url: https://x.com/Cloudflare
+  - type: Changelog
+    url: https://developers.cloudflare.com/changelog/product/queues/
+  - type: Plans
+    url: plans/cloudflare-queues-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cloudflare-queues-rate-limits.yml
+  - type: FinOps
+    url: finops/cloudflare-queues-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

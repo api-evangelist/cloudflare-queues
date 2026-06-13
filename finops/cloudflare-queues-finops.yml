@@ -1,0 +1,107 @@
+specificationVersion: '1.0'
+id: cloudflare-queues-finops
+name: Cloudflare Queues FinOps
+description: FinOps Framework FOCUS-aligned cost management guidance for Cloudflare
+  Queues. Covers cost visibility, optimization, and governance for teams using Queues
+  in production workloads.
+url: https://developers.cloudflare.com/queues/platform/pricing/
+framework: FinOps Framework
+version: '1.0'
+alignment: FOCUS
+costCategories:
+  - name: Queue Operations
+    description: Primary cost driver. Every 64 KB chunk of data written to, read
+      from, or deleted from a queue counts as one operation. A typical end-to-end
+      message delivery (write + read + delete) consumes 3 operations. Retries add
+      1 read operation each. Dead letter queue writes add additional write operations.
+    unit: operations
+    billingModel: consumption
+    freeAllowance:
+      value: 10000
+      unit: operations/day
+      plan: Workers Free
+    includedAllowance:
+      value: 1000000
+      unit: operations/month
+      plan: Workers Paid
+    overageRate:
+      value: 0.40
+      unit: per million operations
+      currency: USD
+      plan: Workers Paid
+    costDrivers:
+      - name: Message Volume
+        description: Higher message throughput directly increases operation count;
+          estimate (messages * 3) for standard delivery cycles
+      - name: Message Size
+        description: Messages over 64 KB are billed as multiple operations proportional
+          to their size (e.g., a 128 KB message = 2 operations per write/read/delete)
+      - name: Retry Rate
+        description: Each failed delivery retry adds a read operation; high retry
+          rates can significantly increase costs for unreliable consumers
+      - name: Dead Letter Queue Usage
+        description: Messages written to DLQ add write operations; reprocessing DLQ
+          messages adds further read operations
+      - name: Message Expiry Without Read
+        description: Expired unread messages still incur write and delete operations
+          but skip the read charge
+  - name: Data Transfer
+    description: Cloudflare Queues does not charge for data egress or bandwidth.
+      There are no data transfer costs regardless of message volume or consumer location.
+    unit: N/A
+    billingModel: none
+    overageRate:
+      value: 0
+      unit: no charge
+      currency: USD
+optimization:
+  - name: Right-size Message Payloads
+    description: Keep individual messages under 64 KB to avoid multi-operation charges.
+      For larger payloads, store data in R2 or KV and pass a reference key in the
+      queue message.
+    impact: high
+  - name: Maximize Batch Sizes
+    description: Use sendBatch() with up to 100 messages per call to reduce per-call
+      overhead and improve throughput efficiency. Similarly, configure consumer batch
+      sizes to the maximum 100 messages to reduce invocations.
+    impact: high
+  - name: Minimize Retries
+    description: Fix consumer reliability to reduce retry rates; each retry adds a
+      read operation cost. Implement idempotent consumers and dead letter queues to
+      manage failures without excessive retries.
+    impact: medium
+  - name: Monitor Queue Backlogs
+    description: Use the /metrics endpoint to monitor backlog depth. Large backlogs
+      increase per-queue storage pressure (25 GB limit) and may indicate processing
+      bottlenecks that inflate costs through retries and delayed message lifecycles.
+    impact: medium
+  - name: Set Appropriate Retention Periods
+    description: Configure message retention to the minimum necessary for your use
+      case. On the paid plan, shorter retention reduces storage overhead and ensures
+      unread messages expire quickly, limiting delete operation charges.
+    impact: low
+  - name: Use Pull Consumers for Batch Efficiency
+    description: HTTP pull consumers allow external consumers to control polling frequency
+      and batch size, enabling more predictable cost patterns for workloads with variable
+      throughput.
+    impact: medium
+governance:
+  - name: Track Operation Usage via Cloudflare Dashboard
+    description: Monitor monthly operation consumption in the Cloudflare dashboard
+      under Workers & Pages > Queues to catch unexpected spikes before they drive
+      overage charges.
+    url: https://dash.cloudflare.com/
+  - name: Estimate Costs with Formula
+    description: Use the formula ((messages * 3) - 1,000,000) / 1,000,000 * $0.40
+      to estimate monthly costs on the paid plan. Add retry and DLQ operations for
+      worst-case estimates.
+    url: https://developers.cloudflare.com/queues/platform/pricing/
+  - name: Set Billing Alerts
+    description: Configure Cloudflare billing notifications to alert when spend approaches
+      budget thresholds, enabling proactive cost management.
+    url: https://dash.cloudflare.com/
+  - name: Audit Queue Count
+    description: Maintain awareness of total queue count relative to the 10,000 per
+      account limit. Unused or orphaned queues should be deleted to stay within governance
+      limits and reduce operational noise.
+    url: https://developers.cloudflare.com/api/resources/queues/

@@ -1,0 +1,94 @@
+specificationVersion: '0.1'
+id: cloudflare-queues-plans-pricing
+name: Cloudflare Queues Plans & Pricing
+description: Pricing plans for Cloudflare Queues. Operations are billed per 64 KB
+  of data written, read, or deleted. Each message delivery typically incurs 3 operations
+  (1 write + 1 read + 1 delete). There are no data egress or throughput charges.
+url: https://developers.cloudflare.com/queues/platform/pricing/
+plans:
+  - name: Workers Free
+    description: Included with the Cloudflare Workers Free plan. Limited operations
+      per day and a fixed short message retention period. Suitable for light experimentation
+      and development.
+    url: https://developers.cloudflare.com/workers/platform/pricing/
+    price: 0
+    unit: month
+    currency: USD
+    features:
+      - name: Included Operations
+        description: 10,000 queue operations per day included at no cost
+        value: '10000'
+        unit: operations/day
+      - name: Message Retention
+        description: Messages are retained for up to 24 hours (non-configurable on
+          free plan)
+        value: '24'
+        unit: hours
+      - name: Queues per Account
+        description: Up to 10,000 queues per account
+        value: '10000'
+        unit: queues
+      - name: Max Message Size
+        description: Up to 128 KB per message including metadata
+        value: '128'
+        unit: KB
+      - name: Throughput
+        description: Up to 5,000 messages per second per queue
+        value: '5000'
+        unit: messages/second
+    limitations:
+      - Message retention is fixed at 24 hours and cannot be extended on the free
+        plan
+      - Some queue features require a paid plan to access
+  - name: Workers Paid
+    description: Included with the Cloudflare Workers Paid plan ($5/month). Provides
+      1 million operations per month free, then $0.40 per additional million operations.
+      Supports configurable message retention up to 14 days and full access to all
+      Queues features including dead letter queues and HTTP pull consumers.
+    url: https://developers.cloudflare.com/workers/platform/pricing/
+    price: 5
+    unit: month
+    currency: USD
+    features:
+      - name: Included Operations
+        description: 1,000,000 queue operations per month included before usage-based
+          billing applies
+        value: '1000000'
+        unit: operations/month
+      - name: Overage Rate
+        description: $0.40 per million operations beyond the included monthly allowance
+        value: '0.40'
+        unit: per million operations
+      - name: Message Retention
+        description: Configurable from 60 seconds to 14 days (default 4 days)
+        value: '14'
+        unit: days
+      - name: Queues per Account
+        description: Up to 10,000 queues per account
+        value: '10000'
+        unit: queues
+      - name: Max Message Size
+        description: Up to 128 KB per message including metadata
+        value: '128'
+        unit: KB
+      - name: Throughput
+        description: Up to 5,000 messages per second per queue
+        value: '5000'
+        unit: messages/second
+      - name: Dead Letter Queues
+        description: Route failed messages to a dead letter queue for inspection and
+          reprocessing
+        value: supported
+      - name: HTTP Pull Consumers
+        description: Pull messages from any HTTP-capable environment outside of Cloudflare
+          Workers
+        value: supported
+      - name: Message Delays
+        description: Defer message delivery by up to 24 hours
+        value: supported
+      - name: Queue Pause and Resume
+        description: Pause and resume message delivery for backlog management
+        value: supported
+      - name: Queue Purge
+        description: Permanently delete all messages in a queue
+        value: supported
