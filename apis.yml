@@ -8,7 +8,7 @@ description: Cloudflare Queues is a flexible, scalable message queue service bui
   up to 14 days, throughput up to 5,000 messages per second per queue, and event
   subscriptions for reactive workflows.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
