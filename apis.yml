@@ -67,7 +67,7 @@ common:
     url: https://www.cloudflarestatus.com/
   - type: X
     url: https://x.com/Cloudflare
-  - type: Changelog
+  - type: ChangeLog
     url: https://developers.cloudflare.com/changelog/product/queues/
   - type: Plans
     url: plans/cloudflare-queues-plans-pricing.yml
