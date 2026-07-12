@@ -43,6 +43,12 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/cloudflare/api-schemas/main/openapi.yaml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/cloudflare-queues-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/cloudflare-queues-domain-security.yml
+  - type: Authentication
+    url: authentication/cloudflare-queues-authentication.yml
   - type: Website
     url: https://www.cloudflare.com/developer-platform/queues/
   - type: Documentation

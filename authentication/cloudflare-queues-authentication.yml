@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cloudflare-queues-cloudflare-queues-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: api_token
+  type: http
+  scheme: bearer
+  description: Cloudflare API Token (Bearer)
+  sources:
+  - openapi/cloudflare-queues-cloudflare-queues-api-openapi.yml
+- name: api_email
+  type: apiKey
+  in: header
+  parameter: X-Auth-Email
+  description: Cloudflare account email address
+  sources:
+  - openapi/cloudflare-queues-cloudflare-queues-api-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: X-Auth-Key
+  description: Cloudflare Global API Key
+  sources:
+  - openapi/cloudflare-queues-cloudflare-queues-api-openapi.yml
