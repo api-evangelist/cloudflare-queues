@@ -43,6 +43,8 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/cloudflare/api-schemas/main/openapi.yaml
 common:
+  - type: AgenticAccess
+    url: agentic-access/cloudflare-queues-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/cloudflare-queues-vulnerability-disclosure.yml
   - type: DomainSecurity
