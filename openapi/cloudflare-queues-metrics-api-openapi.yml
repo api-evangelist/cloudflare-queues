@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Cloudflare Queues Consumer Metrics API
+  description: REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.
+  version: 1.0.0
+  contact:
+    name: Cloudflare Developer Docs
+    url: https://developers.cloudflare.com/queues/
+  license:
+    name: Cloudflare Terms of Service
+    url: https://www.cloudflare.com/terms/
+servers:
+- url: https://api.cloudflare.com/client/v4
+  description: Cloudflare API v4
+security:
+- api_token: []
+tags:
+- name: Metrics
+  description: Operations for retrieving queue metrics
+paths:
+  /accounts/{account_id}/queues/{queue_id}/metrics:
+    get:
+      description: Return best-effort metrics for a queue. Values may be approximate due to the distributed nature of queues.
+      operationId: queues-get-metrics
+      summary: Get Queue Metrics
+      tags:
+      - Metrics
+      parameters:
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Failure response.
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/mq_api-v4-success'
+                - properties:
+                    result:
+                      $ref: '#/components/schemas/mq_queue-metrics'
+                  type: object
+                type: object
+          description: Queue metrics.
+components:
+  schemas:
+    mq_api-v4-success:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - true
+          type: boolean
+      type: object
+    mq_api-v4-failure:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - false
+          example: false
+          type: boolean
+      type: object
+    mq_api-v4-message:
+      example: []
+      items:
+        type: string
+      type: array
+    mq_identifier:
+      description: A Resource identifier.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
+      type: string
+    mq_queue-metrics:
+      description: Best-effort metrics for the queue. Values may be approximate due to the distributed nature of queues.
+      properties:
+        backlog_bytes:
+          description: The size in bytes of unacknowledged messages in the queue.
+          example: 1024
+          type: number
+        backlog_count:
+          description: The number of unacknowledged messages in the queue.
+          example: 5
+          type: number
+        oldest_message_timestamp_ms:
+          description: Unix timestamp in milliseconds of the oldest unacknowledged message in the queue. Returns 0 if unknown.
+          example: 1710950954154
+          type: number
+      required:
+      - backlog_count
+      - backlog_bytes
+      - oldest_message_timestamp_ms
+      type: object
+    mq_api-v4-error:
+      example:
+      - code: 7003
+        message: No route for the URI
+      items:
+        properties:
+          code:
+            minimum: 1000
+            type: integer
+          message:
+            type: string
+        required:
+        - code
+        - message
+        type: object
+        uniqueItems: true
+      minLength: 1
+      type: array
+  securitySchemes:
+    api_token:
+      type: http
+      scheme: bearer
+      description: Cloudflare API Token (Bearer)
+    api_email:
+      type: apiKey
+      in: header
+      name: X-Auth-Email
+      description: Cloudflare account email address
+    api_key:
+      type: apiKey
+      in: header
+      name: X-Auth-Key
+      description: Cloudflare Global API Key
+externalDocs:
+  description: Cloudflare Queues Documentation
+  url: https://developers.cloudflare.com/queues/

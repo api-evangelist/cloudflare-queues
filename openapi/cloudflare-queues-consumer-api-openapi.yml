@@ -1,0 +1,460 @@
+openapi: 3.0.3
+info:
+  title: Cloudflare Queues Consumer API
+  description: REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.
+  version: 1.0.0
+  contact:
+    name: Cloudflare Developer Docs
+    url: https://developers.cloudflare.com/queues/
+  license:
+    name: Cloudflare Terms of Service
+    url: https://www.cloudflare.com/terms/
+servers:
+- url: https://api.cloudflare.com/client/v4
+  description: Cloudflare API v4
+security:
+- api_token: []
+tags:
+- name: Consumer
+  description: Operations for managing queue consumers (Worker push or HTTP pull)
+paths:
+  /accounts/{account_id}/queues/{queue_id}/consumers:
+    get:
+      description: Returns the consumers for a Queue
+      operationId: queues-list-consumers
+      summary: List Queue Consumers
+      tags:
+      - Consumer
+      parameters:
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Failure response
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/mq_api-v4-success'
+                - properties:
+                    result:
+                      items:
+                        $ref: '#/components/schemas/mq_consumer-response'
+                      type: array
+                  type: object
+                type: object
+          description: All consumers attached to this Queue
+    post:
+      description: Creates a new consumer for a Queue
+      operationId: queues-create-consumer
+      summary: Create a Queue Consumer
+      tags:
+      - Consumer
+      parameters:
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mq_consumer-request'
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Failure response
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/mq_api-v4-success'
+                - properties:
+                    result:
+                      $ref: '#/components/schemas/mq_consumer-response'
+                  type: object
+                type: object
+          description: Create Queue Consumer response.
+  /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}:
+    delete:
+      description: Deletes the consumer for a queue.
+      operationId: queues-delete-consumer
+      summary: Delete Queue Consumer
+      tags:
+      - Consumer
+      parameters:
+      - in: path
+        name: consumer_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Failure response
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-success'
+          description: Successful consumer delete
+    get:
+      description: Fetches the consumer for a queue by consumer id
+      operationId: queues-get-consumer
+      summary: Get Queue Consumer
+      tags:
+      - Consumer
+      parameters:
+      - in: path
+        name: consumer_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Get Queue Consumer response failure.
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/mq_api-v4-success'
+                - properties:
+                    result:
+                      $ref: '#/components/schemas/mq_consumer-response'
+                  type: object
+                type: object
+          description: Get Queue Consumer response.
+    put:
+      description: Updates the consumer for a queue, or creates one if it does not exist.
+      operationId: queues-update-consumer
+      summary: Update Queue Consumer
+      tags:
+      - Consumer
+      parameters:
+      - in: path
+        name: consumer_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: queue_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      - in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/mq_identifier'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mq_consumer-request'
+        required: true
+      responses:
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mq_api-v4-failure'
+          description: Update Queue Consumer response failure.
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/mq_api-v4-success'
+                - properties:
+                    result:
+                      $ref: '#/components/schemas/mq_consumer-response'
+                  type: object
+                type: object
+          description: Update Queue Consumer response.
+components:
+  schemas:
+    mq_queue-name:
+      example: example-queue
+      type: string
+    mq_api-v4-failure:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - false
+          example: false
+          type: boolean
+      type: object
+    mq_worker-consumer-request:
+      properties:
+        dead_letter_queue:
+          $ref: '#/components/schemas/mq_queue-name'
+        script_name:
+          $ref: '#/components/schemas/mq_script-name'
+        settings:
+          properties:
+            batch_size:
+              $ref: '#/components/schemas/mq_batch-size'
+            max_concurrency:
+              $ref: '#/components/schemas/mq_max-concurrency'
+            max_retries:
+              $ref: '#/components/schemas/mq_max-retries'
+            max_wait_time_ms:
+              $ref: '#/components/schemas/mq_max-wait-time'
+            retry_delay:
+              $ref: '#/components/schemas/mq_retry-delay'
+          type: object
+        type:
+          enum:
+          - worker
+          type: string
+      required:
+      - type
+      - script_name
+      type: object
+    mq_api-v4-message:
+      example: []
+      items:
+        type: string
+      type: array
+    mq_identifier:
+      description: A Resource identifier.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
+      type: string
+    mq_api-v4-error:
+      example:
+      - code: 7003
+        message: No route for the URI
+      items:
+        properties:
+          code:
+            minimum: 1000
+            type: integer
+          message:
+            type: string
+        required:
+        - code
+        - message
+        type: object
+        uniqueItems: true
+      minLength: 1
+      type: array
+    mq_consumer-request:
+      description: Request body for creating or updating a consumer
+      discriminator:
+        mapping:
+          http_pull: '#/components/schemas/mq_http-consumer-request'
+          worker: '#/components/schemas/mq_worker-consumer-request'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/mq_worker-consumer-request'
+      - $ref: '#/components/schemas/mq_http-consumer-request'
+      type: object
+    mq_retry-delay:
+      description: The number of seconds to delay before making the message available for another attempt.
+      example: 10
+      type: number
+    mq_max-wait-time:
+      description: The number of milliseconds to wait for a batch to fill up before attempting to deliver it
+      example: 5000
+      type: number
+    mq_batch-size:
+      description: The maximum number of messages to include in a batch.
+      example: 50
+      type: number
+    mq_http-consumer-request:
+      properties:
+        dead_letter_queue:
+          $ref: '#/components/schemas/mq_queue-name'
+        settings:
+          properties:
+            batch_size:
+              $ref: '#/components/schemas/mq_batch-size'
+            max_retries:
+              $ref: '#/components/schemas/mq_max-retries'
+            retry_delay:
+              $ref: '#/components/schemas/mq_retry-delay'
+            visibility_timeout_ms:
+              $ref: '#/components/schemas/mq_visibility-timeout'
+          type: object
+        type:
+          enum:
+          - http_pull
+          type: string
+      required:
+      - type
+      type: object
+    mq_script-name:
+      description: Name of a Worker
+      example: my-consumer-worker
+      type: string
+    mq_max-retries:
+      description: The maximum number of retries
+      example: 3
+      type: number
+    mq_api-v4-success:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - true
+          type: boolean
+      type: object
+    mq_max-concurrency:
+      description: Maximum number of concurrent consumers that may consume from this Queue. Set to null to automatically opt in to the platform's maximum (recommended).
+      example: 10
+      type: number
+    mq_http-consumer-response:
+      properties:
+        consumer_id:
+          $ref: '#/components/schemas/mq_identifier'
+        created_on:
+          format: date-time
+          type: string
+        dead_letter_queue:
+          description: Name of the dead letter queue, or empty string if not configured
+          type: string
+        queue_name:
+          $ref: '#/components/schemas/mq_queue-name'
+        settings:
+          properties:
+            batch_size:
+              $ref: '#/components/schemas/mq_batch-size'
+            max_retries:
+              $ref: '#/components/schemas/mq_max-retries'
+            retry_delay:
+              $ref: '#/components/schemas/mq_retry-delay'
+            visibility_timeout_ms:
+              $ref: '#/components/schemas/mq_visibility-timeout'
+          type: object
+        type:
+          enum:
+          - http_pull
+          type: string
+      type: object
+    mq_worker-consumer-response:
+      properties:
+        consumer_id:
+          $ref: '#/components/schemas/mq_identifier'
+        created_on:
+          format: date-time
+          type: string
+        dead_letter_queue:
+          description: Name of the dead letter queue, or empty string if not configured
+          type: string
+        queue_name:
+          $ref: '#/components/schemas/mq_queue-name'
+        script_name:
+          $ref: '#/components/schemas/mq_script-name'
+        settings:
+          properties:
+            batch_size:
+              $ref: '#/components/schemas/mq_batch-size'
+            max_concurrency:
+              $ref: '#/components/schemas/mq_max-concurrency'
+            max_retries:
+              $ref: '#/components/schemas/mq_max-retries'
+            max_wait_time_ms:
+              $ref: '#/components/schemas/mq_max-wait-time'
+            retry_delay:
+              $ref: '#/components/schemas/mq_retry-delay'
+          type: object
+        type:
+          enum:
+          - worker
+          type: string
+      type: object
+    mq_consumer-response:
+      description: Response body representing a consumer
+      discriminator:
+        mapping:
+          http_pull: '#/components/schemas/mq_http-consumer-response'
+          worker: '#/components/schemas/mq_worker-consumer-response'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/mq_worker-consumer-response'
+      - $ref: '#/components/schemas/mq_http-consumer-response'
+      type: object
+    mq_visibility-timeout:
+      description: The number of milliseconds that a message is exclusively leased. After the timeout, the message becomes available for another attempt.
+      example: 6000
+      type: number
+  securitySchemes:
+    api_token:
+      type: http
+      scheme: bearer
+      description: Cloudflare API Token (Bearer)
+    api_email:
+      type: apiKey
+      in: header
+      name: X-Auth-Email
+      description: Cloudflare account email address
+    api_key:
+      type: apiKey
+      in: header
+      name: X-Auth-Key
+      description: Cloudflare Global API Key
+externalDocs:
+  description: Cloudflare Queues Documentation
+  url: https://developers.cloudflare.com/queues/
