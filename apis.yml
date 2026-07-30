@@ -8,7 +8,20 @@ description: Cloudflare Queues is a flexible, scalable message queue service bui
   up to 14 days, throughput up to 5,000 messages per second per queue, and event
   subscriptions for reactive workflows.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cloudflare-queues.png
 url: https://raw.githubusercontent.com/api-evangelist/cloudflare-queues/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -23,26 +36,57 @@ tags:
   - Dead Letter Queue
   - Event Driven
 apis:
-  - aid: cloudflare-queues:cloudflare-queues-api
-    name: Cloudflare Queues API
-    description: REST API for creating and managing Cloudflare Queues, sending and
-      receiving messages, configuring consumers (Worker push or HTTP pull), managing
-      dead letter queues, purging queues, and retrieving queue metrics and event subscriptions.
-      Authenticated with Cloudflare API tokens via Bearer authorization.
-    humanURL: https://developers.cloudflare.com/api/resources/queues/
-    baseURL: https://api.cloudflare.com/client/v4
-    tags:
-      - Queues
-      - Messaging
-      - Consumers
-      - Dead Letter Queue
-      - Workers
-    properties:
-      - type: Documentation
-        url: https://developers.cloudflare.com/queues/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/cloudflare/api-schemas/main/openapi.yaml
+- aid: cloudflare-queues:cloudflare-queues-consumer-api
+  name: Cloudflare Queues Consumer API
+  description: Operations for managing queue consumers (Worker push or HTTP pull)
+  humanURL: https://developers.cloudflare.com/api/resources/queues/
+  baseURL: https://api.cloudflare.com/client/v4
+  tags:
+  - Consumer
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudflare-queues-consumer-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cloudflare.com/queues/
+- aid: cloudflare-queues:cloudflare-queues-messages-api
+  name: Cloudflare Queues Messages API
+  description: Operations for sending, receiving, and acknowledging messages
+  humanURL: https://developers.cloudflare.com/api/resources/queues/
+  baseURL: https://api.cloudflare.com/client/v4
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudflare-queues-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cloudflare.com/queues/
+- aid: cloudflare-queues:cloudflare-queues-metrics-api
+  name: Cloudflare Queues Metrics API
+  description: Operations for retrieving queue metrics
+  humanURL: https://developers.cloudflare.com/api/resources/queues/
+  baseURL: https://api.cloudflare.com/client/v4
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudflare-queues-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cloudflare.com/queues/
+- aid: cloudflare-queues:cloudflare-queues-queue-api
+  name: Cloudflare Queues Queue API
+  description: Operations for managing Cloudflare Queues and their configuration
+  humanURL: https://developers.cloudflare.com/api/resources/queues/
+  baseURL: https://api.cloudflare.com/client/v4
+  tags:
+  - Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudflare-queues-queue-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cloudflare.com/queues/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/cloudflare-queues/overview
   - type: AgenticAccess
     url: agentic-access/cloudflare-queues-agentic-access.yml
   - type: VulnerabilityDisclosure
