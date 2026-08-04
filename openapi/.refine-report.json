@@ -1,0 +1,20 @@
+{
+  "provider": "cloudflare-queues",
+  "sources": [
+    "cloudflare-queues-consumer-api-openapi.yml",
+    "cloudflare-queues-messages-api-openapi.yml",
+    "cloudflare-queues-metrics-api-openapi.yml",
+    "cloudflare-queues-queue-api-openapi.yml"
+  ],
+  "outputs": [
+    "cloudflare-queues-consumer-api-openapi.yml",
+    "cloudflare-queues-messages-api-openapi.yml",
+    "cloudflare-queues-metrics-api-openapi.yml",
+    "cloudflare-queues-queue-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

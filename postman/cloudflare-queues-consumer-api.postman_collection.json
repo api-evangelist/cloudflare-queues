@@ -1,0 +1,998 @@
+{
+  "info": {
+    "_postman_id": "b89513ab-2fef-470d-8f57-ea8a8250dd4d",
+    "name": "Cloudflare Queues Consumer API",
+    "description": "REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.\n\nContact Support:\n Name: Cloudflare Developer Docs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:22:21.000Z",
+    "updatedAt": "2026-07-28T01:22:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b89513ab-2fef-470d-8f57-ea8a8250dd4d"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{account_id}",
+          "item": [
+            {
+              "name": "queues",
+              "item": [
+                {
+                  "name": "{queue_id}",
+                  "item": [
+                    {
+                      "name": "consumers",
+                      "item": [
+                        {
+                          "name": "{consumer_id}",
+                          "item": [
+                            {
+                              "name": "Delete Queue Consumer",
+                              "id": "b518659c-8e67-4a76-af30-374d06d3096b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers",
+                                    ":consumer_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f07cfafe-1861-4d03-8790-a5d240374891",
+                                      "key": "account_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "ba0fa437-8ded-4652-826b-08c0a84651b5",
+                                      "key": "queue_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "de647073-703d-4429-a457-b60aaf267748",
+                                      "key": "consumer_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes the consumer for a queue."
+                              },
+                              "response": [
+                                {
+                                  "id": "e54e2dc5-4410-4f87-91c6-89243849aa9c",
+                                  "name": "Successful consumer delete",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-e54e2dc5-4410-4f87-91c6-89243849aa9c"
+                                },
+                                {
+                                  "id": "9f40f071-e127-4d1d-abf5-d445aeeb18de",
+                                  "name": "Failure response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-9f40f071-e127-4d1d-abf5-d445aeeb18de"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-b518659c-8e67-4a76-af30-374d06d3096b"
+                            },
+                            {
+                              "name": "Get Queue Consumer",
+                              "id": "f3370ffa-0546-445b-8cc0-bba35c7152f5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers",
+                                    ":consumer_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "58560ddc-c683-431a-8c6f-c5fe38e521d4",
+                                      "key": "account_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "18bd07ff-5997-444c-9b8f-68c43f8ae989",
+                                      "key": "queue_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "2fddb282-d483-479a-b303-bc50ff990131",
+                                      "key": "consumer_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Fetches the consumer for a queue by consumer id"
+                              },
+                              "response": [
+                                {
+                                  "id": "4f754ba7-8191-475b-8d76-a52482eaed35",
+                                  "name": "Get Queue Consumer response.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumer_id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"dead_letter_queue\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"script_name\": \"<string>\",\n    \"settings\": {\n      \"batch_size\": \"<number>\",\n      \"max_concurrency\": \"<number>\",\n      \"max_retries\": \"<number>\",\n      \"max_wait_time_ms\": \"<number>\",\n      \"retry_delay\": \"<number>\"\n    },\n    \"type\": \"worker\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-4f754ba7-8191-475b-8d76-a52482eaed35"
+                                },
+                                {
+                                  "id": "7a752293-a4b2-44f1-9a75-60331d73d6b5",
+                                  "name": "Get Queue Consumer response failure.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-7a752293-a4b2-44f1-9a75-60331d73d6b5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-f3370ffa-0546-445b-8cc0-bba35c7152f5"
+                            },
+                            {
+                              "name": "Update Queue Consumer",
+                              "id": "0c552a96-ba57-4737-bc99-dfa448176cff",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers",
+                                    ":consumer_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "170b2c42-74c8-4a52-9193-9add684e5492",
+                                      "key": "account_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "7802982a-43e1-4e69-b4f3-be1dcaa57e2a",
+                                      "key": "queue_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "1fcb7fa1-4b22-4d70-813d-c36f63897ee7",
+                                      "key": "consumer_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Updates the consumer for a queue, or creates one if it does not exist."
+                              },
+                              "response": [
+                                {
+                                  "id": "fca45df4-d594-436b-b1f7-fed6691a8cb3",
+                                  "name": "Update Queue Consumer response.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumer_id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"dead_letter_queue\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"script_name\": \"<string>\",\n    \"settings\": {\n      \"batch_size\": \"<number>\",\n      \"max_concurrency\": \"<number>\",\n      \"max_retries\": \"<number>\",\n      \"max_wait_time_ms\": \"<number>\",\n      \"retry_delay\": \"<number>\"\n    },\n    \"type\": \"worker\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-fca45df4-d594-436b-b1f7-fed6691a8cb3"
+                                },
+                                {
+                                  "id": "cfab08fc-eaef-43eb-95fa-3c11f5b120f2",
+                                  "name": "Update Queue Consumer response failure.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":account_id",
+                                        "queues",
+                                        ":queue_id",
+                                        "consumers",
+                                        ":consumer_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "account_id"
+                                        },
+                                        {
+                                          "key": "queue_id"
+                                        },
+                                        {
+                                          "key": "consumer_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                                  "createdAt": "2026-07-28T01:22:22.000Z",
+                                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                                  "uid": "35240-cfab08fc-eaef-43eb-95fa-3c11f5b120f2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-0c552a96-ba57-4737-bc99-dfa448176cff"
+                            }
+                          ],
+                          "id": "5da0b7f4-bb40-49c6-934b-d44cad03ca8a",
+                          "createdAt": "2026-07-28T01:22:22.000Z",
+                          "updatedAt": "2026-07-28T01:22:22.000Z",
+                          "uid": "35240-5da0b7f4-bb40-49c6-934b-d44cad03ca8a"
+                        },
+                        {
+                          "name": "List Queue Consumers",
+                          "id": "9a785ba9-3343-4c81-abc9-1e7b8e5d1f53",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id",
+                                "consumers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "da57b945-a55a-427e-acb1-2794381a172a",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "6c9c81f6-d867-485a-9fc5-87ca63c7203e",
+                                  "key": "queue_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the consumers for a Queue"
+                          },
+                          "response": [
+                            {
+                              "id": "f6c3db71-4d0a-499c-835e-6210d64ebaed",
+                              "name": "All consumers attached to this Queue",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-f6c3db71-4d0a-499c-835e-6210d64ebaed"
+                            },
+                            {
+                              "id": "8f3c2d63-d8a0-46f7-8b46-79c0cf5a23ac",
+                              "name": "Failure response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-8f3c2d63-d8a0-46f7-8b46-79c0cf5a23ac"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:22:22.000Z",
+                          "updatedAt": "2026-07-28T01:22:22.000Z",
+                          "uid": "35240-9a785ba9-3343-4c81-abc9-1e7b8e5d1f53"
+                        },
+                        {
+                          "name": "Create a Queue Consumer",
+                          "id": "656fc12f-3d35-42ce-9f89-d5604e81a66d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id",
+                                "consumers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "90236f25-1371-4dda-b345-89cd7cd504ec",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "0c341320-46fc-45e4-b7c7-bffff0660978",
+                                  "key": "queue_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Creates a new consumer for a Queue"
+                          },
+                          "response": [
+                            {
+                              "id": "b60cad65-062f-4935-a3f8-6992621be90f",
+                              "name": "Create Queue Consumer response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumer_id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"dead_letter_queue\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"script_name\": \"<string>\",\n    \"settings\": {\n      \"batch_size\": \"<number>\",\n      \"max_concurrency\": \"<number>\",\n      \"max_retries\": \"<number>\",\n      \"max_wait_time_ms\": \"<number>\",\n      \"retry_delay\": \"<number>\"\n    },\n    \"type\": \"worker\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-b60cad65-062f-4935-a3f8-6992621be90f"
+                            },
+                            {
+                              "id": "38ed315a-784a-4d19-abfc-636ac963a41b",
+                              "name": "Failure response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": \"worker\",\n  \"script_name\": \"<string>\",\n  \"dead_letter_queue\": \"<string>\",\n  \"settings\": {\n    \"batch_size\": \"<number>\",\n    \"max_concurrency\": \"<number>\",\n    \"max_retries\": \"<number>\",\n    \"max_wait_time_ms\": \"<number>\",\n    \"retry_delay\": \"<number>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/consumers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "consumers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                              "createdAt": "2026-07-28T01:22:22.000Z",
+                              "updatedAt": "2026-07-28T01:22:22.000Z",
+                              "uid": "35240-38ed315a-784a-4d19-abfc-636ac963a41b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:22:22.000Z",
+                          "updatedAt": "2026-07-28T01:22:22.000Z",
+                          "uid": "35240-656fc12f-3d35-42ce-9f89-d5604e81a66d"
+                        }
+                      ],
+                      "id": "51496c9e-3d34-44ab-a8e4-9d6498795004",
+                      "createdAt": "2026-07-28T01:22:22.000Z",
+                      "updatedAt": "2026-07-28T01:22:22.000Z",
+                      "uid": "35240-51496c9e-3d34-44ab-a8e4-9d6498795004"
+                    }
+                  ],
+                  "id": "56a1e27e-1b5e-4826-920b-4a3e0cd9980b",
+                  "createdAt": "2026-07-28T01:22:22.000Z",
+                  "updatedAt": "2026-07-28T01:22:22.000Z",
+                  "uid": "35240-56a1e27e-1b5e-4826-920b-4a3e0cd9980b"
+                }
+              ],
+              "id": "d7773403-1a09-42f8-a5d5-819d23b40332",
+              "createdAt": "2026-07-28T01:22:22.000Z",
+              "updatedAt": "2026-07-28T01:22:22.000Z",
+              "uid": "35240-d7773403-1a09-42f8-a5d5-819d23b40332"
+            }
+          ],
+          "id": "8066ddc4-0cd0-4417-8ef8-226c1aaf8980",
+          "createdAt": "2026-07-28T01:22:22.000Z",
+          "updatedAt": "2026-07-28T01:22:22.000Z",
+          "uid": "35240-8066ddc4-0cd0-4417-8ef8-226c1aaf8980"
+        }
+      ],
+      "id": "45cd51f4-8bad-4ae8-ae84-dcb7398f5646",
+      "createdAt": "2026-07-28T01:22:22.000Z",
+      "updatedAt": "2026-07-28T01:22:22.000Z",
+      "uid": "35240-45cd51f4-8bad-4ae8-ae84-dcb7398f5646"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cloudflare.com/client/v4"
+    }
+  ]
+}

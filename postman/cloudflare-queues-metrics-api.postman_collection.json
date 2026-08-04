@@ -1,0 +1,232 @@
+{
+  "info": {
+    "_postman_id": "a31e199e-67f3-4311-b2bc-112b5e77c934",
+    "name": "Cloudflare Queues Consumer Metrics API",
+    "description": "REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.\n\nContact Support:\n Name: Cloudflare Developer Docs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:22:24.000Z",
+    "updatedAt": "2026-07-28T01:22:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a31e199e-67f3-4311-b2bc-112b5e77c934"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{account_id}",
+          "item": [
+            {
+              "name": "queues",
+              "item": [
+                {
+                  "name": "{queue_id}",
+                  "item": [
+                    {
+                      "name": "metrics",
+                      "item": [
+                        {
+                          "name": "Get Queue Metrics",
+                          "id": "41acf93f-a34d-460f-84af-436114d21feb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/metrics",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id",
+                                "metrics"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4ea1c128-3fe4-4a73-9cd7-d8dc05eb432c",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "4070da19-e918-4508-86fb-57d419b145b2",
+                                  "key": "queue_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Return best-effort metrics for a queue. Values may be approximate due to the distributed nature of queues."
+                          },
+                          "response": [
+                            {
+                              "id": "5a69d3a6-8b7a-4b58-9c0f-6e0145d359ce",
+                              "name": "Queue metrics.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/metrics",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "metrics"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"backlog_count\": \"<number>\",\n    \"backlog_bytes\": \"<number>\",\n    \"oldest_message_timestamp_ms\": \"<number>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:22:24.000Z",
+                              "updatedAt": "2026-07-28T01:22:24.000Z",
+                              "uid": "35240-5a69d3a6-8b7a-4b58-9c0f-6e0145d359ce"
+                            },
+                            {
+                              "id": "96d2f78a-89af-41d7-a48f-b4a98514adf3",
+                              "name": "Failure response.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/metrics",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "metrics"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                              "createdAt": "2026-07-28T01:22:24.000Z",
+                              "updatedAt": "2026-07-28T01:22:24.000Z",
+                              "uid": "35240-96d2f78a-89af-41d7-a48f-b4a98514adf3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:22:24.000Z",
+                          "updatedAt": "2026-07-28T01:22:24.000Z",
+                          "uid": "35240-41acf93f-a34d-460f-84af-436114d21feb"
+                        }
+                      ],
+                      "id": "af974ac6-6a52-448f-87a5-08ac2fa0838c",
+                      "createdAt": "2026-07-28T01:22:24.000Z",
+                      "updatedAt": "2026-07-28T01:22:24.000Z",
+                      "uid": "35240-af974ac6-6a52-448f-87a5-08ac2fa0838c"
+                    }
+                  ],
+                  "id": "d6ef1c66-94dc-4387-b76e-64aa9c8ff337",
+                  "createdAt": "2026-07-28T01:22:24.000Z",
+                  "updatedAt": "2026-07-28T01:22:24.000Z",
+                  "uid": "35240-d6ef1c66-94dc-4387-b76e-64aa9c8ff337"
+                }
+              ],
+              "id": "a4b28411-97ff-4d53-8278-7a70ab0023ab",
+              "createdAt": "2026-07-28T01:22:24.000Z",
+              "updatedAt": "2026-07-28T01:22:24.000Z",
+              "uid": "35240-a4b28411-97ff-4d53-8278-7a70ab0023ab"
+            }
+          ],
+          "id": "c0b3d856-7b54-484a-b64d-83af50c906c0",
+          "createdAt": "2026-07-28T01:22:24.000Z",
+          "updatedAt": "2026-07-28T01:22:24.000Z",
+          "uid": "35240-c0b3d856-7b54-484a-b64d-83af50c906c0"
+        }
+      ],
+      "id": "876116b0-6985-4ab9-960d-2a321f0fe0b3",
+      "createdAt": "2026-07-28T01:22:24.000Z",
+      "updatedAt": "2026-07-28T01:22:24.000Z",
+      "uid": "35240-876116b0-6985-4ab9-960d-2a321f0fe0b3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cloudflare.com/client/v4"
+    }
+  ]
+}

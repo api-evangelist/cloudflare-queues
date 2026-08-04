@@ -1,0 +1,1451 @@
+{
+  "info": {
+    "_postman_id": "3dc49644-8193-4f4d-b566-b7a08c782ad6",
+    "name": "Cloudflare Queues Consumer Queue API",
+    "description": "REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.\n\nContact Support:\n Name: Cloudflare Developer Docs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:22:25.000Z",
+    "updatedAt": "2026-07-28T01:22:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3dc49644-8193-4f4d-b566-b7a08c782ad6"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{account_id}",
+          "item": [
+            {
+              "name": "queues",
+              "item": [
+                {
+                  "name": "{queue_id}",
+                  "item": [
+                    {
+                      "name": "purge",
+                      "item": [
+                        {
+                          "name": "Get Queue Purge Status",
+                          "id": "1e244934-565c-4573-bd97-e1b6f2f6fadb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id",
+                                "purge"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9ce274ad-7eeb-41d9-b71d-782edb544ab6",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "ac326143-9e84-4db6-8ef0-9106f3586032",
+                                  "key": "queue_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get details about a Queue's purge status."
+                          },
+                          "response": [
+                            {
+                              "id": "e534a266-aafc-427f-a2aa-84cb2bb6bff3",
+                              "name": "Details of the requested Queue purge status",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "purge"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"completed\": \"<string>\",\n    \"started_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:22:25.000Z",
+                              "updatedAt": "2026-07-28T01:22:25.000Z",
+                              "uid": "35240-e534a266-aafc-427f-a2aa-84cb2bb6bff3"
+                            },
+                            {
+                              "id": "6dcadbc6-9994-47d5-99aa-6020fa42e471",
+                              "name": "Failure response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "purge"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                              "createdAt": "2026-07-28T01:22:25.000Z",
+                              "updatedAt": "2026-07-28T01:22:25.000Z",
+                              "uid": "35240-6dcadbc6-9994-47d5-99aa-6020fa42e471"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-1e244934-565c-4573-bd97-e1b6f2f6fadb"
+                        },
+                        {
+                          "name": "Purge Queue",
+                          "id": "faf4b9c8-0b9d-4e82-b857-6651e5184fef",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"delete_messages_permanently\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id",
+                                "purge"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e3382200-6e25-438a-b0b8-2ce7fbf02243",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a5dff97f-2189-4e17-8723-615ede496b99",
+                                  "key": "queue_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deletes all messages from the Queue."
+                          },
+                          "response": [
+                            {
+                              "id": "7490bb36-51be-4373-9bb6-3b1b8da3a19c",
+                              "name": "Updated Queue after purge",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"delete_messages_permanently\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "purge"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumers\": [\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      },\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      }\n    ],\n    \"consumers_total_count\": \"<number>\",\n    \"created_on\": \"<string>\",\n    \"modified_on\": \"<string>\",\n    \"producers\": [\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      },\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      }\n    ],\n    \"producers_total_count\": \"<number>\",\n    \"queue_id\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"settings\": {\n      \"delivery_delay\": \"<number>\",\n      \"delivery_paused\": \"<boolean>\",\n      \"message_retention_period\": \"<number>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:22:25.000Z",
+                              "updatedAt": "2026-07-28T01:22:25.000Z",
+                              "uid": "35240-7490bb36-51be-4373-9bb6-3b1b8da3a19c"
+                            },
+                            {
+                              "id": "8c642e17-58a9-4be0-94e7-1a1e663d4932",
+                              "name": "Failure response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"delete_messages_permanently\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id/purge",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":account_id",
+                                    "queues",
+                                    ":queue_id",
+                                    "purge"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "queue_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                              "createdAt": "2026-07-28T01:22:25.000Z",
+                              "updatedAt": "2026-07-28T01:22:25.000Z",
+                              "uid": "35240-8c642e17-58a9-4be0-94e7-1a1e663d4932"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-faf4b9c8-0b9d-4e82-b857-6651e5184fef"
+                        }
+                      ],
+                      "id": "694dda35-2bbe-4286-8833-b350db4f155a",
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-694dda35-2bbe-4286-8833-b350db4f155a"
+                    },
+                    {
+                      "name": "Delete Queue",
+                      "id": "22c228d6-8ad5-4d35-9f95-dd6aec0db724",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues",
+                            ":queue_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "374ab3cd-21b2-4df1-8dbf-9c120412bce0",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "57ec63c6-3614-472e-bbd9-c029c8a61cdd",
+                              "key": "queue_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deletes a queue"
+                      },
+                      "response": [
+                        {
+                          "id": "f6c13992-df59-4945-b058-4e3bb39fbc34",
+                          "name": "Successful delete",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-f6c13992-df59-4945-b058-4e3bb39fbc34"
+                        },
+                        {
+                          "id": "720bf0fa-9937-4390-ba5a-2f212f117f3e",
+                          "name": "Failure response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-720bf0fa-9937-4390-ba5a-2f212f117f3e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-22c228d6-8ad5-4d35-9f95-dd6aec0db724"
+                    },
+                    {
+                      "name": "Get Queue",
+                      "id": "df3a84c7-bf61-469a-b44b-e5d4f674f7cd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues",
+                            ":queue_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "23ae2920-2df5-4ba7-8765-dac979ed0974",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "1610a0bb-0e74-4f43-904f-4f31aa3f89a4",
+                              "key": "queue_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get details about a specific queue."
+                      },
+                      "response": [
+                        {
+                          "id": "e3e7ca6f-eb76-4b96-a4a4-fd1db518295e",
+                          "name": "Details of the requested Queue",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumers\": [\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      },\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      }\n    ],\n    \"consumers_total_count\": \"<number>\",\n    \"created_on\": \"<string>\",\n    \"modified_on\": \"<string>\",\n    \"producers\": [\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      },\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      }\n    ],\n    \"producers_total_count\": \"<number>\",\n    \"queue_id\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"settings\": {\n      \"delivery_delay\": \"<number>\",\n      \"delivery_paused\": \"<boolean>\",\n      \"message_retention_period\": \"<number>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-e3e7ca6f-eb76-4b96-a4a4-fd1db518295e"
+                        },
+                        {
+                          "id": "20115a38-483e-4210-b8d1-ceba118e2c16",
+                          "name": "Failure response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-20115a38-483e-4210-b8d1-ceba118e2c16"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-df3a84c7-bf61-469a-b44b-e5d4f674f7cd"
+                    },
+                    {
+                      "name": "Update Queue (Partial)",
+                      "id": "507adc87-f794-49bb-9ffe-45d939f81b83",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues",
+                            ":queue_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "890d9817-b0cf-435c-8828-5d54b0329d05",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "579ef4d1-02b7-4ba1-b0bd-ac82c4c4af84",
+                              "key": "queue_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates a Queue (partial update)."
+                      },
+                      "response": [
+                        {
+                          "id": "15d0581e-dcb5-4325-a944-1beb6b66fad8",
+                          "name": "Updated Queue",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumers\": [\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      },\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      }\n    ],\n    \"consumers_total_count\": \"<number>\",\n    \"created_on\": \"<string>\",\n    \"modified_on\": \"<string>\",\n    \"producers\": [\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      },\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      }\n    ],\n    \"producers_total_count\": \"<number>\",\n    \"queue_id\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"settings\": {\n      \"delivery_delay\": \"<number>\",\n      \"delivery_paused\": \"<boolean>\",\n      \"message_retention_period\": \"<number>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-15d0581e-dcb5-4325-a944-1beb6b66fad8"
+                        },
+                        {
+                          "id": "7f4e2013-b580-459c-9453-4aec3bdaf1ab",
+                          "name": "Failure response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-7f4e2013-b580-459c-9453-4aec3bdaf1ab"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-507adc87-f794-49bb-9ffe-45d939f81b83"
+                    },
+                    {
+                      "name": "Update Queue",
+                      "id": "a557ac84-69bf-4149-b5cd-b1741f438883",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues",
+                            ":queue_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6e359213-06c1-4d6c-8f20-cea040f8b5c9",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "1fd728d6-f928-46af-bfed-2f04f0f637e6",
+                              "key": "queue_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates a Queue. Note that this endpoint does not support partial updates. If successful, the Queue's configuration is overwritten with the supplied configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "0773ee67-16a1-45d0-9dc4-77128c4df65a",
+                          "name": "Updated Queue",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumers\": [\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      },\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      }\n    ],\n    \"consumers_total_count\": \"<number>\",\n    \"created_on\": \"<string>\",\n    \"modified_on\": \"<string>\",\n    \"producers\": [\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      },\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      }\n    ],\n    \"producers_total_count\": \"<number>\",\n    \"queue_id\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"settings\": {\n      \"delivery_delay\": \"<number>\",\n      \"delivery_paused\": \"<boolean>\",\n      \"message_retention_period\": \"<number>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-0773ee67-16a1-45d0-9dc4-77128c4df65a"
+                        },
+                        {
+                          "id": "24a4adf7-67c3-4f65-851c-56ab2d46ec08",
+                          "name": "Failure response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consumers\": [\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    },\n    {\n      \"consumer_id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"dead_letter_queue\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"script_name\": \"<string>\",\n      \"settings\": {\n        \"batch_size\": \"<number>\",\n        \"max_concurrency\": \"<number>\",\n        \"max_retries\": \"<number>\",\n        \"max_wait_time_ms\": \"<number>\",\n        \"retry_delay\": \"<number>\"\n      },\n      \"type\": \"worker\"\n    }\n  ],\n  \"consumers_total_count\": \"<number>\",\n  \"created_on\": \"<string>\",\n  \"modified_on\": \"<string>\",\n  \"producers\": [\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    },\n    {\n      \"script\": \"<string>\",\n      \"type\": \"worker\"\n    }\n  ],\n  \"producers_total_count\": \"<number>\",\n  \"queue_id\": \"<string>\",\n  \"queue_name\": \"<string>\",\n  \"settings\": {\n    \"delivery_delay\": \"<number>\",\n    \"delivery_paused\": \"<boolean>\",\n    \"message_retention_period\": \"<number>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                          "createdAt": "2026-07-28T01:22:25.000Z",
+                          "updatedAt": "2026-07-28T01:22:25.000Z",
+                          "uid": "35240-24a4adf7-67c3-4f65-851c-56ab2d46ec08"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-a557ac84-69bf-4149-b5cd-b1741f438883"
+                    }
+                  ],
+                  "id": "0c266213-a65c-4574-af6e-ba1261f02e31",
+                  "createdAt": "2026-07-28T01:22:25.000Z",
+                  "updatedAt": "2026-07-28T01:22:25.000Z",
+                  "uid": "35240-0c266213-a65c-4574-af6e-ba1261f02e31"
+                },
+                {
+                  "name": "List Queues",
+                  "id": "b371a165-5082-468a-bea2-278f6d94e2fb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "queues"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7727d1b-7d27-4f0c-91e8-81fb9b940833",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the queues owned by an account."
+                  },
+                  "response": [
+                    {
+                      "id": "82d121f5-9883-47ec-9f76-4423a35b5edc",
+                      "name": "List of all Queues that belong to this account",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": [\n    {\n      \"consumers\": [\n        {\n          \"consumer_id\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"dead_letter_queue\": \"<string>\",\n          \"queue_name\": \"<string>\",\n          \"script_name\": \"<string>\",\n          \"settings\": {\n            \"batch_size\": \"<number>\",\n            \"max_concurrency\": \"<number>\",\n            \"max_retries\": \"<number>\",\n            \"max_wait_time_ms\": \"<number>\",\n            \"retry_delay\": \"<number>\"\n          },\n          \"type\": \"worker\"\n        },\n        {\n          \"consumer_id\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"dead_letter_queue\": \"<string>\",\n          \"queue_name\": \"<string>\",\n          \"script_name\": \"<string>\",\n          \"settings\": {\n            \"batch_size\": \"<number>\",\n            \"max_concurrency\": \"<number>\",\n            \"max_retries\": \"<number>\",\n            \"max_wait_time_ms\": \"<number>\",\n            \"retry_delay\": \"<number>\"\n          },\n          \"type\": \"worker\"\n        }\n      ],\n      \"consumers_total_count\": \"<number>\",\n      \"created_on\": \"<string>\",\n      \"modified_on\": \"<string>\",\n      \"producers\": [\n        {\n          \"script\": \"<string>\",\n          \"type\": \"worker\"\n        },\n        {\n          \"script\": \"<string>\",\n          \"type\": \"worker\"\n        }\n      ],\n      \"producers_total_count\": \"<number>\",\n      \"queue_id\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"settings\": {\n        \"delivery_delay\": \"<number>\",\n        \"delivery_paused\": \"<boolean>\",\n        \"message_retention_period\": \"<number>\"\n      }\n    },\n    {\n      \"consumers\": [\n        {\n          \"consumer_id\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"dead_letter_queue\": \"<string>\",\n          \"queue_name\": \"<string>\",\n          \"script_name\": \"<string>\",\n          \"settings\": {\n            \"batch_size\": \"<number>\",\n            \"max_concurrency\": \"<number>\",\n            \"max_retries\": \"<number>\",\n            \"max_wait_time_ms\": \"<number>\",\n            \"retry_delay\": \"<number>\"\n          },\n          \"type\": \"worker\"\n        },\n        {\n          \"consumer_id\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"dead_letter_queue\": \"<string>\",\n          \"queue_name\": \"<string>\",\n          \"script_name\": \"<string>\",\n          \"settings\": {\n            \"batch_size\": \"<number>\",\n            \"max_concurrency\": \"<number>\",\n            \"max_retries\": \"<number>\",\n            \"max_wait_time_ms\": \"<number>\",\n            \"retry_delay\": \"<number>\"\n          },\n          \"type\": \"worker\"\n        }\n      ],\n      \"consumers_total_count\": \"<number>\",\n      \"created_on\": \"<string>\",\n      \"modified_on\": \"<string>\",\n      \"producers\": [\n        {\n          \"script\": \"<string>\",\n          \"type\": \"worker\"\n        },\n        {\n          \"script\": \"<string>\",\n          \"type\": \"worker\"\n        }\n      ],\n      \"producers_total_count\": \"<number>\",\n      \"queue_id\": \"<string>\",\n      \"queue_name\": \"<string>\",\n      \"settings\": {\n        \"delivery_delay\": \"<number>\",\n        \"delivery_paused\": \"<boolean>\",\n        \"message_retention_period\": \"<number>\"\n      }\n    }\n  ],\n  \"result_info\": {\n    \"count\": \"<number>\",\n    \"page\": \"<number>\",\n    \"per_page\": \"<number>\",\n    \"total_count\": \"<number>\",\n    \"total_pages\": \"<number>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-82d121f5-9883-47ec-9f76-4423a35b5edc"
+                    },
+                    {
+                      "id": "69cf1f6a-05a8-4f67-a2d5-db6d41734e90",
+                      "name": "Failure response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-69cf1f6a-05a8-4f67-a2d5-db6d41734e90"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:22:25.000Z",
+                  "updatedAt": "2026-07-28T01:22:25.000Z",
+                  "uid": "35240-b371a165-5082-468a-bea2-278f6d94e2fb"
+                },
+                {
+                  "name": "Create Queue",
+                  "id": "6c5241c8-4a19-411f-a08f-a6cfc6d70922",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"queue_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "queues"
+                      ],
+                      "variable": [
+                        {
+                          "id": "43051f60-fd86-48f3-9e7b-9c3a17cb0ea2",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Create a new queue"
+                  },
+                  "response": [
+                    {
+                      "id": "f31c689a-c86f-481a-a1cd-4034152582d2",
+                      "name": "Created Queue",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"queue_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": true,\n  \"result\": {\n    \"consumers\": [\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      },\n      {\n        \"consumer_id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"dead_letter_queue\": \"<string>\",\n        \"queue_name\": \"<string>\",\n        \"script_name\": \"<string>\",\n        \"settings\": {\n          \"batch_size\": \"<number>\",\n          \"max_concurrency\": \"<number>\",\n          \"max_retries\": \"<number>\",\n          \"max_wait_time_ms\": \"<number>\",\n          \"retry_delay\": \"<number>\"\n        },\n        \"type\": \"worker\"\n      }\n    ],\n    \"consumers_total_count\": \"<number>\",\n    \"created_on\": \"<string>\",\n    \"modified_on\": \"<string>\",\n    \"producers\": [\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      },\n      {\n        \"script\": \"<string>\",\n        \"type\": \"worker\"\n      }\n    ],\n    \"producers_total_count\": \"<number>\",\n    \"queue_id\": \"<string>\",\n    \"queue_name\": \"<string>\",\n    \"settings\": {\n      \"delivery_delay\": \"<number>\",\n      \"delivery_paused\": \"<boolean>\",\n      \"message_retention_period\": \"<number>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-f31c689a-c86f-481a-a1cd-4034152582d2"
+                    },
+                    {
+                      "id": "ee272536-d7f9-4c89-89f3-6c37ef0cb85c",
+                      "name": "Failure response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"queue_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"success\": false\n}",
+                      "createdAt": "2026-07-28T01:22:25.000Z",
+                      "updatedAt": "2026-07-28T01:22:25.000Z",
+                      "uid": "35240-ee272536-d7f9-4c89-89f3-6c37ef0cb85c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:22:25.000Z",
+                  "updatedAt": "2026-07-28T01:22:25.000Z",
+                  "uid": "35240-6c5241c8-4a19-411f-a08f-a6cfc6d70922"
+                }
+              ],
+              "id": "fe29326f-526f-43f2-9793-97df196cf5cf",
+              "createdAt": "2026-07-28T01:22:25.000Z",
+              "updatedAt": "2026-07-28T01:22:25.000Z",
+              "uid": "35240-fe29326f-526f-43f2-9793-97df196cf5cf"
+            }
+          ],
+          "id": "2e9cd2d3-06b0-48c8-9069-4beddc6b4eff",
+          "createdAt": "2026-07-28T01:22:25.000Z",
+          "updatedAt": "2026-07-28T01:22:25.000Z",
+          "uid": "35240-2e9cd2d3-06b0-48c8-9069-4beddc6b4eff"
+        }
+      ],
+      "id": "090184b2-3490-440b-8628-883b1d17caf8",
+      "createdAt": "2026-07-28T01:22:25.000Z",
+      "updatedAt": "2026-07-28T01:22:25.000Z",
+      "uid": "35240-090184b2-3490-440b-8628-883b1d17caf8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cloudflare.com/client/v4"
+    }
+  ]
+}
