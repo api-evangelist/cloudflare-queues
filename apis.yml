@@ -85,6 +85,19 @@ apis:
   - type: Documentation
     url: https://developers.cloudflare.com/queues/
 common:
+  - type: IssueTracker
+    url: https://github.com/cloudflare/workers-sdk/issues
+  - type: Releases
+    url: https://github.com/cloudflare/workers-sdk/releases
+  - type: SecurityPolicy
+    url: https://github.com/cloudflare/workers-sdk/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/cloudflare/workers-sdk/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/cloudflare/workers-sdk/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/cloudflare/workers-sdk/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/cloudflare-queues/overview
   - type: AgenticAccess
