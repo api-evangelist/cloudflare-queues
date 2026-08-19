@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloudflare Queues Consumer API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consumer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Queue Consumers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudflare.com/client/v4/accounts/:account_id/queues/:queue_id/consumers",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the consumers for a Queue"
+        },
+        {
+          "info": {
+            "name": "Create a Queue Consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudflare.com/client/v4/accounts/:account_id/queues/:queue_id/consumers",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new consumer for a Queue"
+        },
+        {
+          "info": {
+            "name": "Get Queue Consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudflare.com/client/v4/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+            "params": [
+              {
+                "name": "consumer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Fetches the consumer for a queue by consumer id"
+        },
+        {
+          "info": {
+            "name": "Update Queue Consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloudflare.com/client/v4/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+            "params": [
+              {
+                "name": "consumer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the consumer for a queue, or creates one if it does not exist."
+        },
+        {
+          "info": {
+            "name": "Delete Queue Consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloudflare.com/client/v4/accounts/:account_id/queues/:queue_id/consumers/:consumer_id",
+            "params": [
+              {
+                "name": "consumer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the consumer for a queue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
