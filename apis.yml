@@ -34,6 +34,15 @@ tags:
   - Cloudflare
   - Async
   - Dead Letter Queue
+  - Event-Driven
+tags_raw:
+  - Messaging
+  - Message Queue
+  - Serverless
+  - Workers
+  - Cloudflare
+  - Async
+  - Dead Letter Queue
   - Event Driven
 apis:
 - aid: cloudflare-queues:cloudflare-queues-consumer-api
@@ -54,6 +63,8 @@ apis:
   humanURL: https://developers.cloudflare.com/api/resources/queues/
   baseURL: https://api.cloudflare.com/client/v4
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
