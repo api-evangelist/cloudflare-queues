@@ -104,6 +104,8 @@ apis:
   humanURL: https://developers.cloudflare.com/api/resources/queues/
   baseURL: https://api.cloudflare.com/client/v4
   tags:
+  - Queues
+  tags_raw:
   - Queue
   properties:
   - type: OpenAPI
