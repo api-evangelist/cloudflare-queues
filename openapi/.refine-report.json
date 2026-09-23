@@ -1,10 +1,7 @@
 {
   "provider": "cloudflare-queues",
   "sources": [
-    "cloudflare-queues-consumer-api-openapi.yml",
-    "cloudflare-queues-messages-api-openapi.yml",
-    "cloudflare-queues-metrics-api-openapi.yml",
-    "cloudflare-queues-queue-api-openapi.yml"
+    "_original/cloudflare-queues-cloudflare-queues-api-openapi.yml"
   ],
   "outputs": [
     "cloudflare-queues-consumer-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cloudflare-queues-cloudflare-queues-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cloudflare-queues-consumer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudflare-queues-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudflare-queues-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudflare-queues-queue-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

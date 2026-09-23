@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Cloudflare Queues Consumer Metrics API
+  title: Cloudflare Queues Metrics API
   description: REST API for creating and managing Cloudflare Queues, sending and receiving messages, configuring consumers (Worker push or HTTP pull), managing dead letter queues, purging queues, and retrieving queue metrics and event subscriptions. Authenticated with Cloudflare API tokens via Bearer authorization.
   version: 1.0.0
   contact:
@@ -57,42 +57,6 @@ paths:
           description: Queue metrics.
 components:
   schemas:
-    mq_api-v4-success:
-      properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
-          enum:
-          - true
-          type: boolean
-      type: object
-    mq_api-v4-failure:
-      properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
-          enum:
-          - false
-          example: false
-          type: boolean
-      type: object
-    mq_api-v4-message:
-      example: []
-      items:
-        type: string
-      type: array
-    mq_identifier:
-      description: A Resource identifier.
-      example: 023e105f4ecef8ad9ca31a8372d0c353
-      maxLength: 32
-      readOnly: true
-      type: string
     mq_queue-metrics:
       description: Best-effort metrics for the queue. Values may be approximate due to the distributed nature of queues.
       properties:
@@ -130,6 +94,42 @@ components:
         type: object
         uniqueItems: true
       minLength: 1
+      type: array
+    mq_api-v4-failure:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - false
+          example: false
+          type: boolean
+      type: object
+    mq_identifier:
+      description: A Resource identifier.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
+      type: string
+    mq_api-v4-success:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - true
+          type: boolean
+      type: object
+    mq_api-v4-message:
+      example: []
+      items:
+        type: string
       type: array
   securitySchemes:
     api_token:
