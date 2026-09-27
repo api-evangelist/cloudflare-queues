@@ -57,25 +57,18 @@ paths:
           description: Queue metrics.
 components:
   schemas:
-    mq_queue-metrics:
-      description: Best-effort metrics for the queue. Values may be approximate due to the distributed nature of queues.
+    mq_api-v4-failure:
       properties:
-        backlog_bytes:
-          description: The size in bytes of unacknowledged messages in the queue.
-          example: 1024
-          type: number
-        backlog_count:
-          description: The number of unacknowledged messages in the queue.
-          example: 5
-          type: number
-        oldest_message_timestamp_ms:
-          description: Unix timestamp in milliseconds of the oldest unacknowledged message in the queue. Returns 0 if unknown.
-          example: 1710950954154
-          type: number
-      required:
-      - backlog_count
-      - backlog_bytes
-      - oldest_message_timestamp_ms
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - false
+          example: false
+          type: boolean
       type: object
     mq_api-v4-error:
       example:
@@ -95,18 +88,25 @@ components:
         uniqueItems: true
       minLength: 1
       type: array
-    mq_api-v4-failure:
+    mq_queue-metrics:
+      description: Best-effort metrics for the queue. Values may be approximate due to the distributed nature of queues.
       properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
-          enum:
-          - false
-          example: false
-          type: boolean
+        backlog_bytes:
+          description: The size in bytes of unacknowledged messages in the queue.
+          example: 1024
+          type: number
+        backlog_count:
+          description: The number of unacknowledged messages in the queue.
+          example: 5
+          type: number
+        oldest_message_timestamp_ms:
+          description: Unix timestamp in milliseconds of the oldest unacknowledged message in the queue. Returns 0 if unknown.
+          example: 1710950954154
+          type: number
+      required:
+      - backlog_count
+      - backlog_bytes
+      - oldest_message_timestamp_ms
       type: object
     mq_identifier:
       description: A Resource identifier.
