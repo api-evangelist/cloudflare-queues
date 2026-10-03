@@ -224,13 +224,24 @@ paths:
           description: Update Queue Consumer response.
 components:
   schemas:
-    mq_batch-size:
-      description: The maximum number of messages to include in a batch.
-      example: 50
+    mq_queue-name:
+      example: example-queue
+      type: string
+    mq_max-retries:
+      description: The maximum number of retries
+      example: 3
       type: number
-    mq_http-consumer-request:
+    mq_http-consumer-response:
       properties:
+        consumer_id:
+          $ref: '#/components/schemas/mq_identifier'
+        created_on:
+          format: date-time
+          type: string
         dead_letter_queue:
+          description: Name of the dead letter queue, or empty string if not configured
+          type: string
+        queue_name:
           $ref: '#/components/schemas/mq_queue-name'
         settings:
           properties:
@@ -247,42 +258,7 @@ components:
           enum:
           - http_pull
           type: string
-      required:
-      - type
       type: object
-    mq_consumer-request:
-      description: Request body for creating or updating a consumer
-      discriminator:
-        mapping:
-          http_pull: '#/components/schemas/mq_http-consumer-request'
-          worker: '#/components/schemas/mq_worker-consumer-request'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/mq_worker-consumer-request'
-      - $ref: '#/components/schemas/mq_http-consumer-request'
-      type: object
-    mq_queue-name:
-      example: example-queue
-      type: string
-    mq_visibility-timeout:
-      description: The number of milliseconds that a message is exclusively leased. After the timeout, the message becomes available for another attempt.
-      example: 6000
-      type: number
-    mq_consumer-response:
-      description: Response body representing a consumer
-      discriminator:
-        mapping:
-          http_pull: '#/components/schemas/mq_http-consumer-response'
-          worker: '#/components/schemas/mq_worker-consumer-response'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/mq_worker-consumer-response'
-      - $ref: '#/components/schemas/mq_http-consumer-response'
-      type: object
-    mq_max-wait-time:
-      description: The number of milliseconds to wait for a batch to fill up before attempting to deliver it
-      example: 5000
-      type: number
     mq_api-v4-success:
       properties:
         errors:
@@ -327,24 +303,56 @@ components:
           - worker
           type: string
       type: object
+    mq_consumer-request:
+      description: Request body for creating or updating a consumer
+      discriminator:
+        mapping:
+          http_pull: '#/components/schemas/mq_http-consumer-request'
+          worker: '#/components/schemas/mq_worker-consumer-request'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/mq_worker-consumer-request'
+      - $ref: '#/components/schemas/mq_http-consumer-request'
+      type: object
     mq_api-v4-message:
       example: []
       items:
         type: string
       type: array
-    mq_api-v4-failure:
+    mq_http-consumer-request:
       properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
+        dead_letter_queue:
+          $ref: '#/components/schemas/mq_queue-name'
+        settings:
+          properties:
+            batch_size:
+              $ref: '#/components/schemas/mq_batch-size'
+            max_retries:
+              $ref: '#/components/schemas/mq_max-retries'
+            retry_delay:
+              $ref: '#/components/schemas/mq_retry-delay'
+            visibility_timeout_ms:
+              $ref: '#/components/schemas/mq_visibility-timeout'
+          type: object
+        type:
           enum:
-          - false
-          example: false
-          type: boolean
+          - http_pull
+          type: string
+      required:
+      - type
       type: object
+    mq_batch-size:
+      description: The maximum number of messages to include in a batch.
+      example: 50
+      type: number
+    mq_max-concurrency:
+      description: Maximum number of concurrent consumers that may consume from this Queue. Set to null to automatically opt in to the platform's maximum (recommended).
+      example: 10
+      type: number
+    mq_visibility-timeout:
+      description: The number of milliseconds that a message is exclusively leased. After the timeout, the message becomes available for another attempt.
+      example: 6000
+      type: number
     mq_retry-delay:
       description: The number of seconds to delay before making the message available for another attempt.
       example: 10
@@ -376,41 +384,33 @@ components:
       - type
       - script_name
       type: object
-    mq_max-retries:
-      description: The maximum number of retries
-      example: 3
+    mq_max-wait-time:
+      description: The number of milliseconds to wait for a batch to fill up before attempting to deliver it
+      example: 5000
       type: number
-    mq_script-name:
-      description: Name of a Worker
-      example: my-consumer-worker
-      type: string
-    mq_http-consumer-response:
+    mq_api-v4-failure:
       properties:
-        consumer_id:
-          $ref: '#/components/schemas/mq_identifier'
-        created_on:
-          format: date-time
-          type: string
-        dead_letter_queue:
-          description: Name of the dead letter queue, or empty string if not configured
-          type: string
-        queue_name:
-          $ref: '#/components/schemas/mq_queue-name'
-        settings:
-          properties:
-            batch_size:
-              $ref: '#/components/schemas/mq_batch-size'
-            max_retries:
-              $ref: '#/components/schemas/mq_max-retries'
-            retry_delay:
-              $ref: '#/components/schemas/mq_retry-delay'
-            visibility_timeout_ms:
-              $ref: '#/components/schemas/mq_visibility-timeout'
-          type: object
-        type:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
           enum:
-          - http_pull
-          type: string
+          - false
+          example: false
+          type: boolean
+      type: object
+    mq_consumer-response:
+      description: Response body representing a consumer
+      discriminator:
+        mapping:
+          http_pull: '#/components/schemas/mq_http-consumer-response'
+          worker: '#/components/schemas/mq_worker-consumer-response'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/mq_worker-consumer-response'
+      - $ref: '#/components/schemas/mq_http-consumer-response'
       type: object
     mq_identifier:
       description: A Resource identifier.
@@ -436,10 +436,10 @@ components:
         uniqueItems: true
       minLength: 1
       type: array
-    mq_max-concurrency:
-      description: Maximum number of concurrent consumers that may consume from this Queue. Set to null to automatically opt in to the platform's maximum (recommended).
-      example: 10
-      type: number
+    mq_script-name:
+      description: Name of a Worker
+      example: my-consumer-worker
+      type: string
   securitySchemes:
     api_token:
       type: http
