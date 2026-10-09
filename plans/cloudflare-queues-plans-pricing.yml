@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 specificationVersion: '0.1'
 id: cloudflare-queues-plans-pricing
 name: Cloudflare Queues Plans & Pricing
@@ -92,3 +96,26 @@ plans:
       - name: Queue Purge
         description: Permanently delete all messages in a queue
         value: supported
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - period
+  plans:
+  - name: Workers Free
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
+  - name: Workers Paid
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods: []
