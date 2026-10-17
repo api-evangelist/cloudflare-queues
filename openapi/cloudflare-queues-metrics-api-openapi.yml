@@ -57,11 +57,18 @@ paths:
           description: Queue metrics.
 components:
   schemas:
-    mq_api-v4-message:
-      example: []
-      items:
-        type: string
-      type: array
+    mq_api-v4-success:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - true
+          type: boolean
+      type: object
     mq_queue-metrics:
       description: Best-effort metrics for the queue. Values may be approximate due to the distributed nature of queues.
       properties:
@@ -82,6 +89,30 @@ components:
       - backlog_bytes
       - oldest_message_timestamp_ms
       type: object
+    mq_api-v4-message:
+      example: []
+      items:
+        type: string
+      type: array
+    mq_api-v4-failure:
+      properties:
+        errors:
+          $ref: '#/components/schemas/mq_api-v4-error'
+        messages:
+          $ref: '#/components/schemas/mq_api-v4-message'
+        success:
+          description: Indicates if the API call was successful or not.
+          enum:
+          - false
+          example: false
+          type: boolean
+      type: object
+    mq_identifier:
+      description: A Resource identifier.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
+      type: string
     mq_api-v4-error:
       example:
       - code: 7003
@@ -100,37 +131,6 @@ components:
         uniqueItems: true
       minLength: 1
       type: array
-    mq_identifier:
-      description: A Resource identifier.
-      example: 023e105f4ecef8ad9ca31a8372d0c353
-      maxLength: 32
-      readOnly: true
-      type: string
-    mq_api-v4-failure:
-      properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
-          enum:
-          - false
-          example: false
-          type: boolean
-      type: object
-    mq_api-v4-success:
-      properties:
-        errors:
-          $ref: '#/components/schemas/mq_api-v4-error'
-        messages:
-          $ref: '#/components/schemas/mq_api-v4-message'
-        success:
-          description: Indicates if the API call was successful or not.
-          enum:
-          - true
-          type: boolean
-      type: object
   securitySchemes:
     api_token:
       type: http
